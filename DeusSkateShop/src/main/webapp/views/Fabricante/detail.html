@@ -1,0 +1,35 @@
+<header ng-switch on="$location.path().indexOf('/Fabricantes/new') > -1">
+    <h3 ng-switch-when="true">Create a new Fabricante</h3>
+    <h3 ng-switch-when="false">View or edit Fabricante</h3>
+</header>
+<form id="FabricanteForm" name="FabricanteForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': FabricanteForm.razaoSocial.$invalid}">
+        <label for="razaoSocial" class="col-sm-2 control-label">Razao Social</label>
+        <div id="razaoSocialControls" class="col-sm-10">
+            <input id="razaoSocial" name="razaoSocial" type="text" required class="form-control" ng-model="fabricante.razaoSocial" placeholder="Enter the Fabricante Razao Social"></input>
+            <span class="help-block error" ng-show="FabricanteForm.razaoSocial.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': FabricanteForm.nomeFantasia.$invalid}">
+        <label for="nomeFantasia" class="col-sm-2 control-label">Nome Fantasia</label>
+        <div id="nomeFantasiaControls" class="col-sm-10">
+            <input id="nomeFantasia" name="nomeFantasia" type="text" required class="form-control" ng-model="fabricante.nomeFantasia" placeholder="Enter the Fabricante Nome Fantasia"></input>
+            <span class="help-block error" ng-show="FabricanteForm.nomeFantasia.$error.required">required</span> 
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveFabricante" name="saveFabricante" class="btn btn-primary" ng-disabled="isClean() || FabricanteForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteFabricante" name="deleteFabricante" class="btn btn-danger" ng-show="fabricante.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>

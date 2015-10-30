@@ -30,7 +30,7 @@ public class Usuario implements Serializable
 
    @Column
    private String senha;
-
+   
    public Long getId()
    {
       return this.id;

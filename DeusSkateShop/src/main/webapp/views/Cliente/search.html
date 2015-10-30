@@ -1,0 +1,78 @@
+<div class="form-horizontal">
+    <h3>Create a new Cliente</h3>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-sm-2">
+            <a id="Create" name="Create" class="btn btn-primary" href="#/Clientes/new"><span class="glyphicon glyphicon-plus-sign"></span> Create</a>
+        </div>
+    </div>
+</div>
+<hr/>
+<div>
+    <h3>Search for Clientes</h3>
+    <form id="ClienteSearch" class="form-horizontal">
+        
+
+    <div class="form-group">
+        <label for="Nome" class="col-sm-2 control-label">Nome</label>
+        <div class="col-sm-10">
+            <input id="Nome" name="Nome" class="form-control" type="text" ng-model="search.Nome" placeholder="Enter the Cliente Nome"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="cep" class="col-sm-2 control-label">Cep</label>
+        <div class="col-sm-10">
+            <input id="cep" name="cep" class="form-control" type="text" ng-model="search.cep" placeholder="Enter the Cliente Cep"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+        <div class="col-sm-10">
+            <select id="usuario" name="usuario" class="form-control" ng-model="search.usuario" ng-options="u as u.id for u in usuarioList">
+                <option value="">Choose a Usuario</option>
+            </select>
+        </div>
+    </div>
+
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-sm-10">
+                <a id="Search" name="Search" class="btn btn-primary" ng-click="performSearch()"><span class="glyphicon glyphicon-search"></span> Search</a>
+            </div>
+        </div>
+    </form>
+</div>
+<div id="search-results">
+        <div class="table-responsive">
+        <table class="table table-responsive table-bordered table-striped clearfix">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Cep</th>
+                    <th>Usuario</th>
+                </tr>
+            </thead>
+            <tbody id="search-results-body">
+                <tr ng-repeat="result in searchResults | searchFilter:searchResults | startFrom:currentPage*pageSize | limitTo:pageSize">
+                    <td><a href="#/Clientes/edit/{{result.id}}">{{result.Nome}}</a></td>
+                    <td><a href="#/Clientes/edit/{{result.id}}">{{result.cep}}</a></td>
+                        <td><a href="#/Clientes/edit/{{result.id}}">{{result.usuario.id}}</a></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+        <ul class="pagination pagination-centered">
+        <li ng-class="{disabled:currentPage == 0}">
+            <a id="prev" href ng-click="previous()">«</a>
+        </li>
+        <li ng-repeat="n in pageRange" ng-class="{active:currentPage == n}" ng-click="setPage(n)">
+            <a href ng-bind="n + 1">1</a>
+        </li>
+        <li ng-class="{disabled: currentPage == (numberOfPages() - 1)}">
+            <a id="next" href ng-click="next()">»</a>
+        </li>
+    </ul>
+
+</div>

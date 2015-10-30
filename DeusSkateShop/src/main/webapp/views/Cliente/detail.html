@@ -1,0 +1,45 @@
+<header ng-switch on="$location.path().indexOf('/Clientes/new') > -1">
+    <h3 ng-switch-when="true">Create a new Cliente</h3>
+    <h3 ng-switch-when="false">View or edit Cliente</h3>
+</header>
+<form id="ClienteForm" name="ClienteForm" class="form-horizontal" role="form">
+    <div ng-show="displayError" class="alert alert-danger">
+        <strong>Error!</strong> Something broke. Retry, or cancel and start afresh.
+    </div>
+    
+
+    <div class="form-group" ng-class="{'has-error': ClienteForm.Nome.$invalid}">
+        <label for="Nome" class="col-sm-2 control-label">Nome</label>
+        <div id="NomeControls" class="col-sm-10">
+            <input id="Nome" name="Nome" type="text" required class="form-control" ng-model="cliente.Nome" placeholder="Enter the Cliente Nome"></input>
+            <span class="help-block error" ng-show="ClienteForm.Nome.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ClienteForm.cep.$invalid}">
+        <label for="cep" class="col-sm-2 control-label">Cep</label>
+        <div id="cepControls" class="col-sm-10">
+            <input id="cep" name="cep" type="text" required class="form-control" ng-model="cliente.cep" placeholder="Enter the Cliente Cep"></input>
+            <span class="help-block error" ng-show="ClienteForm.cep.$error.required">required</span> 
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ClienteForm.usuario.$invalid}">
+        <label for="usuario" class="col-sm-2 control-label">Usuario</label>
+        <div id="usuarioControls" class="col-sm-10">
+        <select id="usuario" name="usuario" class="form-control" ng-model="usuarioSelection" ng-options="u.text for u in usuarioSelectionList" required >
+            <option value="">Choose a Usuario</option>
+        </select>
+        <span class="help-block error" ng-show="ClienteForm.usuario.$error.required">required</span> 
+        </div>
+    </div>
+
+
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-10">
+            <button id="saveCliente" name="saveCliente" class="btn btn-primary" ng-disabled="isClean() || ClienteForm.$invalid" ng-click="save()"><span class="glyphicon glyphicon-ok-sign"></span> Save</button>
+            <button id="cancel" name="cancel" class="btn btn-default" ng-click="cancel()"><span class="glyphicon glyphicon-remove-sign"></span> Cancel</button>
+            <button id="deleteCliente" name="deleteCliente" class="btn btn-danger" ng-show="cliente.id" ng-click="remove()"><span class="glyphicon glyphicon-trash"></span> Delete</button>
+        </div>
+    </div>
+</form>
