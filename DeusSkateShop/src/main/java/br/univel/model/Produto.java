@@ -1,30 +1,27 @@
 package br.univel.model;
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
-
-import javax.persistence.CascadeType;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Column;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToOne;
-import javax.persistence.Version;
-
-import java.lang.Override;
 import java.math.BigDecimal;
 
-import br.univel.model.Categoria;
-import br.univel.model.Fabricante;
+import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToOne;
+import javax.persistence.Version;
 
 @Entity
 public class Produto implements Serializable
 {
 
-   @Id
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = 5720122895964402524L;
+@Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;

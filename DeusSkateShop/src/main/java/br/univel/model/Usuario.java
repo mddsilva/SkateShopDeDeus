@@ -13,7 +13,11 @@ import java.lang.Override;
 public class Usuario implements Serializable
 {
 
-   @Id
+   /**
+	 * 
+	 */
+	private static final long serialVersionUID = -6486121489865567122L;
+@Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
