@@ -42,12 +42,15 @@ public class Produto implements Serializable
    private BigDecimal preco;
 
    @Column(nullable = false)
-   @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Categoria categoria;
 
    @Column(nullable = false)
-   @OneToOne(cascade=CascadeType.ALL,fetch = FetchType.LAZY)
+   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Fabricante fabricante;
+
+   @Column(nullable = false)
+   private Integer quantidade;
 
    public Long getId()
    {
@@ -150,6 +153,16 @@ public class Produto implements Serializable
       this.fabricante = fabricante;
    }
 
+   public Integer getQuantidade()
+   {
+      return quantidade;
+   }
+
+   public void setQuantidade(Integer quantidade)
+   {
+      this.quantidade = quantidade;
+   }
+
    @Override
    public String toString()
    {
@@ -158,6 +171,8 @@ public class Produto implements Serializable
          result += "nome: " + nome;
       if (descricao != null && !descricao.trim().isEmpty())
          result += ", descricao: " + descricao;
+      if (quantidade != null)
+         result += ", quantidade: " + quantidade;
       return result;
    }
 }
