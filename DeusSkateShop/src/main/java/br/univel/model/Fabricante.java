@@ -10,14 +10,14 @@ import javax.persistence.Version;
 import java.lang.Override;
 
 @Entity
-public class Categoria implements Serializable
+public class Fabricante implements Serializable
 {
 
    /**
 	 * 
 	 */
-	private static final long serialVersionUID = -5839986112021519173L;
-   @Id
+	private static final long serialVersionUID = 1822972103851783751L;
+@Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
@@ -26,7 +26,10 @@ public class Categoria implements Serializable
    private int version;
 
    @Column(nullable = false)
-   private String descricao;
+   private String razaoSocial;
+
+   @Column(nullable = false)
+   private String nomeFantasia;
 
    public Long getId()
    {
@@ -55,11 +58,11 @@ public class Categoria implements Serializable
       {
          return true;
       }
-      if (!(obj instanceof Categoria))
+      if (!(obj instanceof Fabricante))
       {
          return false;
       }
-      Categoria other = (Categoria) obj;
+      Fabricante other = (Fabricante) obj;
       if (id != null)
       {
          if (!id.equals(other.id))
@@ -79,22 +82,34 @@ public class Categoria implements Serializable
       return result;
    }
 
-   public String getDescricao()
+   public String getRazaoSocial()
    {
-      return descricao;
+      return razaoSocial;
    }
 
-   public void setDescricao(String descricao)
+   public void setRazaoSocial(String razaoSocial)
    {
-      this.descricao = descricao;
+      this.razaoSocial = razaoSocial;
+   }
+
+   public String getNomeFantasia()
+   {
+      return nomeFantasia;
+   }
+
+   public void setNomeFantasia(String nomeFantasia)
+   {
+      this.nomeFantasia = nomeFantasia;
    }
 
    @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";
-      if (descricao != null && !descricao.trim().isEmpty())
-         result += "descricao: " + descricao;
+      if (razaoSocial != null && !razaoSocial.trim().isEmpty())
+         result += "razaoSocial: " + razaoSocial;
+      if (nomeFantasia != null && !nomeFantasia.trim().isEmpty())
+         result += ", nomeFantasia: " + nomeFantasia;
       return result;
    }
 }
