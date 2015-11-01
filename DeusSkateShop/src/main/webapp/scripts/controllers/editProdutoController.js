@@ -1,6 +1,6 @@
 
 
-angular.module('deusSkateShop').controller('EditProdutoController', function($scope, $routeParams, $location, ProdutoResource , CategoriaResource, FabricanteResource) {
+angular.module('deusSkateShop').controller('EditProdutoController', function($scope, $routeParams, $location, ProdutoResource , CategoriaResource, FabricanteResource, VendaResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -39,6 +39,27 @@ angular.module('deusSkateShop').controller('EditProdutoController', function($sc
                         $scope.fabricanteSelection = labelObject;
                         $scope.produto.fabricante = wrappedObject;
                         self.original.fabricante = $scope.produto.fabricante;
+                    }
+                    return labelObject;
+                });
+            });
+            VendaResource.queryAll(function(items) {
+                $scope.vendasSelectionList = $.map(items, function(item) {
+                    var wrappedObject = {
+                        id : item.id
+                    };
+                    var labelObject = {
+                        value : item.id,
+                        text : item.id
+                    };
+                    if($scope.produto.vendas){
+                        $.each($scope.produto.vendas, function(idx, element) {
+                            if(item.id == element.id) {
+                                $scope.vendasSelection.push(labelObject);
+                                $scope.produto.vendas.push(wrappedObject);
+                            }
+                        });
+                        self.original.vendas = $scope.produto.vendas;
                     }
                     return labelObject;
                 });
@@ -90,6 +111,17 @@ angular.module('deusSkateShop').controller('EditProdutoController', function($sc
         if (typeof selection != 'undefined') {
             $scope.produto.fabricante = {};
             $scope.produto.fabricante.id = selection.value;
+        }
+    });
+    $scope.vendasSelection = $scope.vendasSelection || [];
+    $scope.$watch("vendasSelection", function(selection) {
+        if (typeof selection != 'undefined' && $scope.produto) {
+            $scope.produto.vendas = [];
+            $.each(selection, function(idx,selectedItem) {
+                var collectionItem = {};
+                collectionItem.id = selectedItem.value;
+                $scope.produto.vendas.push(collectionItem);
+            });
         }
     });
     

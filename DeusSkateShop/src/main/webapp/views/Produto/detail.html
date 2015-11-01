@@ -34,20 +34,18 @@
     <div class="form-group" ng-class="{'has-error': ProdutoForm.categoria.$invalid}">
         <label for="categoria" class="col-sm-2 control-label">Categoria</label>
         <div id="categoriaControls" class="col-sm-10">
-        <select id="categoria" name="categoria" class="form-control" ng-model="categoriaSelection" ng-options="c.text for c in categoriaSelectionList" required >
+        <select id="categoria" name="categoria" class="form-control" ng-model="categoriaSelection" ng-options="c.text for c in categoriaSelectionList"  >
             <option value="">Choose a Categoria</option>
         </select>
-        <span class="help-block error" ng-show="ProdutoForm.categoria.$error.required">required</span> 
         </div>
     </div>
 
     <div class="form-group" ng-class="{'has-error': ProdutoForm.fabricante.$invalid}">
         <label for="fabricante" class="col-sm-2 control-label">Fabricante</label>
         <div id="fabricanteControls" class="col-sm-10">
-        <select id="fabricante" name="fabricante" class="form-control" ng-model="fabricanteSelection" ng-options="f.text for f in fabricanteSelectionList" required >
+        <select id="fabricante" name="fabricante" class="form-control" ng-model="fabricanteSelection" ng-options="f.text for f in fabricanteSelectionList"  >
             <option value="">Choose a Fabricante</option>
         </select>
-        <span class="help-block error" ng-show="ProdutoForm.fabricante.$error.required">required</span> 
         </div>
     </div>
 
@@ -57,6 +55,15 @@
             <input id="quantidade" name="quantidade" type="number" required class="form-control" ng-model="produto.quantidade" placeholder="Enter the Produto Quantidade"></input>
             <span class="help-block error" ng-show="ProdutoForm.quantidade.$error.required">required</span> 
             <span class="help-block error" ng-show="ProdutoForm.quantidade.$error.number">not a number</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ProdutoForm.vendas.$invalid}">
+        <label for="vendas" class="col-sm-2 control-label">Vendas</label>
+        <div id="vendasControls" class="col-sm-10">
+            <select id="vendas" name="vendas" multiple class="form-control" ng-model="vendasSelection" ng-options="v.text for v in vendasSelectionList">
+                <option value="">Choose a Vendas</option>
+            </select>
         </div>
     </div>
 

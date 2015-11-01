@@ -1,6 +1,6 @@
 
 
-angular.module('deusSkateShop').controller('SearchClienteController', function($scope, $http, ClienteResource , UsuarioResource) {
+angular.module('deusSkateShop').controller('SearchClienteController', function($scope, $http, ClienteResource , UsuarioResource, VendaResource) {
 
     $scope.search={};
     $scope.currentPage = 0;

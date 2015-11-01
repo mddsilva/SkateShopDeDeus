@@ -40,11 +40,9 @@ public class Produto implements Serializable
    @Column
    private BigDecimal preco;
 
-   @Column(nullable = false)
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Categoria categoria;
 
-   @Column(nullable = false)
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Fabricante fabricante;
 

@@ -40,14 +40,12 @@ public class Venda implements Serializable
    @Column(name = "version")
    private int version;
 
-   @Column(nullable = false)
    @ManyToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    private Cliente cliente;
 
    @Column
    private Date data;
 
-   @Column(nullable = false)
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    private FormaPagamento formaPagamento;
 

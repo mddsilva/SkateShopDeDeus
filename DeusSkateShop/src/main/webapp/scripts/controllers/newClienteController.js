@@ -1,5 +1,5 @@
 
-angular.module('deusSkateShop').controller('NewClienteController', function ($scope, $location, locationParser, ClienteResource , UsuarioResource) {
+angular.module('deusSkateShop').controller('NewClienteController', function ($scope, $location, locationParser, ClienteResource , UsuarioResource, VendaResource) {
     $scope.disabled = false;
     $scope.$location = $location;
     $scope.cliente = $scope.cliente || {};
@@ -16,6 +16,25 @@ angular.module('deusSkateShop').controller('NewClienteController', function ($sc
         if ( typeof selection != 'undefined') {
             $scope.cliente.usuario = {};
             $scope.cliente.usuario.id = selection.value;
+        }
+    });
+    
+    $scope.vendasList = VendaResource.queryAll(function(items){
+        $scope.vendasSelectionList = $.map(items, function(item) {
+            return ( {
+                value : item.id,
+                text : item.id
+            });
+        });
+    });
+    $scope.$watch("vendasSelection", function(selection) {
+        if (typeof selection != 'undefined') {
+            $scope.cliente.vendas = [];
+            $.each(selection, function(idx,selectedItem) {
+                var collectionItem = {};
+                collectionItem.id = selectedItem.value;
+                $scope.cliente.vendas.push(collectionItem);
+            });
         }
     });
     

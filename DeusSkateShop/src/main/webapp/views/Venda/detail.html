@@ -11,10 +11,9 @@
     <div class="form-group" ng-class="{'has-error': VendaForm.cliente.$invalid}">
         <label for="cliente" class="col-sm-2 control-label">Cliente</label>
         <div id="clienteControls" class="col-sm-10">
-        <select id="cliente" name="cliente" class="form-control" ng-model="clienteSelection" ng-options="c.text for c in clienteSelectionList" required >
+        <select id="cliente" name="cliente" class="form-control" ng-model="clienteSelection" ng-options="c.text for c in clienteSelectionList"  >
             <option value="">Choose a Cliente</option>
         </select>
-        <span class="help-block error" ng-show="VendaForm.cliente.$error.required">required</span> 
         </div>
     </div>
 
@@ -28,10 +27,9 @@
     <div class="form-group" ng-class="{'has-error': VendaForm.formaPagamento.$invalid}">
         <label for="formaPagamento" class="col-sm-2 control-label">Forma Pagamento</label>
         <div id="formaPagamentoControls" class="col-sm-10">
-        <select id="formaPagamento" name="formaPagamento" class="form-control" ng-model="formaPagamentoSelection" ng-options="f.text for f in formaPagamentoSelectionList" required >
+        <select id="formaPagamento" name="formaPagamento" class="form-control" ng-model="formaPagamentoSelection" ng-options="f.text for f in formaPagamentoSelectionList"  >
             <option value="">Choose a Forma Pagamento</option>
         </select>
-        <span class="help-block error" ng-show="VendaForm.formaPagamento.$error.required">required</span> 
         </div>
     </div>
 

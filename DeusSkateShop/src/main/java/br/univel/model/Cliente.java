@@ -37,7 +37,6 @@ public class Cliente implements Serializable {
 	@Column(nullable = false)
 	private String cep;
 
-	@Column(nullable = false)
 	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
 	private Usuario usuario;
 
