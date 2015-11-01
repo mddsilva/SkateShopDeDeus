@@ -15,6 +15,8 @@ import javax.persistence.Version;
 
 import java.lang.Override;
 import br.univel.model.Usuario;
+import java.sql.Date;
+import br.univel.model.Cliente.Genero;
 
 @Entity
 public class Cliente implements Serializable
@@ -41,6 +43,15 @@ public class Cliente implements Serializable
    @Column(nullable = false)
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    private Usuario usuario;
+
+   @Column(length = 16, nullable = false)
+   private String cpf;
+
+   @Column
+   private Date dataNasc;
+
+   @Column
+   private Genero genero;
 
    public Long getId()
    {
@@ -123,6 +134,49 @@ public class Cliente implements Serializable
       this.usuario = usuario;
    }
 
+   public String getCpf()
+   {
+      return cpf;
+   }
+
+   public void setCpf(String cpf)
+   {
+      this.cpf = cpf;
+   }
+
+   public Date getDataNasc()
+   {
+      return dataNasc;
+   }
+
+   public void setDataNasc(Date dataNasc)
+   {
+      this.dataNasc = dataNasc;
+   }
+
+   public Genero getGenero()
+   {
+      return genero;
+   }
+
+   public void setGenero(Genero genero)
+   {
+      this.genero = genero;
+   }
+   
+   enum Genero
+   {
+
+      M("Masculino"), F("Feminino");
+
+      public String descricao;
+
+      Genero(String descricao)
+      {
+         this.descricao = descricao;
+      }
+   }
+
    @Override
    public String toString()
    {
@@ -131,6 +185,8 @@ public class Cliente implements Serializable
          result += "Nome: " + Nome;
       if (cep != null && !cep.trim().isEmpty())
          result += ", cep: " + cep;
+      if (cpf != null && !cpf.trim().isEmpty())
+         result += ", cpf: " + cpf;
       return result;
    }
 }
