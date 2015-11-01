@@ -2,6 +2,7 @@ package br.univel.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
@@ -46,6 +48,9 @@ public class Produto implements Serializable
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Fabricante fabricante;
 
+   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+   private List<Venda> vendas;
+   
    @Column(nullable = false)
    private Integer quantidade;
 
@@ -160,7 +165,17 @@ public class Produto implements Serializable
       this.quantidade = quantidade;
    }
 
-   @Override
+   
+   
+   public List<Venda> getVendas() {
+	return vendas;
+}
+
+public void setVendas(List<Venda> vendas) {
+	this.vendas = vendas;
+}
+
+@Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";

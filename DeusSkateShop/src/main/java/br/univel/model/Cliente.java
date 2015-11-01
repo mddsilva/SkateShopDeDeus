@@ -2,6 +2,7 @@ package br.univel.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -10,178 +11,166 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 
 @Entity
-public class Cliente implements Serializable
-{
+public class Cliente implements Serializable {
 
-   /**
+	/**
     * 
     */
-   private static final long serialVersionUID = 795403685562871714L;
-   @Id
-   @GeneratedValue(strategy = GenerationType.AUTO)
-   @Column(name = "id", updatable = false, nullable = false)
-   private Long id;
-   @Version
-   @Column(name = "version")
-   private int version;
+	private static final long serialVersionUID = 795403685562871714L;
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id", updatable = false, nullable = false)
+	private Long id;
+	@Version
+	@Column(name = "version")
+	private int version;
 
-   @Column(nullable = false)
-   private String Nome;
+	@Column(nullable = false)
+	private String Nome;
 
-   @Column(nullable = false)
-   private String cep;
+	@Column(nullable = false)
+	private String cep;
 
-   @Column(nullable = false)
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   private Usuario usuario;
+	@Column(nullable = false)
+	@OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	private Usuario usuario;
 
-   @Column(length = 16, nullable = false)
-   private String cpf;
+	@OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+	@JoinColumn(name = "cliente_id")
+	private List<Venda> vendas;
 
-   @Column
-   private Date dataNasc;
+	@Column(length = 16, nullable = false)
+	private String cpf;
 
-   @Column
-   private Genero genero;
+	@Column
+	private Date dataNasc;
 
-   public Long getId()
-   {
-      return this.id;
-   }
+	@Column
+	private Genero genero;
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	public Long getId() {
+		return this.id;
+	}
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public int getVersion() {
+		return this.version;
+	}
 
-   @Override
-   public boolean equals(Object obj)
-   {
-      if (this == obj)
-      {
-         return true;
-      }
-      if (!(obj instanceof Cliente))
-      {
-         return false;
-      }
-      Cliente other = (Cliente) obj;
-      if (id != null)
-      {
-         if (!id.equals(other.id))
-         {
-            return false;
-         }
-      }
-      return true;
-   }
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
-   @Override
-   public int hashCode()
-   {
-      final int prime = 31;
-      int result = 1;
-      result = prime * result + ((id == null) ? 0 : id.hashCode());
-      return result;
-   }
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (!(obj instanceof Cliente)) {
+			return false;
+		}
+		Cliente other = (Cliente) obj;
+		if (id != null) {
+			if (!id.equals(other.id)) {
+				return false;
+			}
+		}
+		return true;
+	}
 
-   public String getNome()
-   {
-      return Nome;
-   }
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((id == null) ? 0 : id.hashCode());
+		return result;
+	}
 
-   public void setNome(String Nome)
-   {
-      this.Nome = Nome;
-   }
+	public String getNome() {
+		return Nome;
+	}
 
-   public String getCep()
-   {
-      return cep;
-   }
+	public void setNome(String Nome) {
+		this.Nome = Nome;
+	}
 
-   public void setCep(String cep)
-   {
-      this.cep = cep;
-   }
+	public String getCep() {
+		return cep;
+	}
 
-   public Usuario getUsuario()
-   {
-      return usuario;
-   }
+	public void setCep(String cep) {
+		this.cep = cep;
+	}
 
-   public void setUsuario(Usuario usuario)
-   {
-      this.usuario = usuario;
-   }
+	public Usuario getUsuario() {
+		return usuario;
+	}
 
-   public String getCpf()
-   {
-      return cpf;
-   }
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 
-   public void setCpf(String cpf)
-   {
-      this.cpf = cpf;
-   }
+	public String getCpf() {
+		return cpf;
+	}
 
-   public Date getDataNasc()
-   {
-      return dataNasc;
-   }
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
+	}
 
-   public void setDataNasc(Date dataNasc)
-   {
-      this.dataNasc = dataNasc;
-   }
+	public Date getDataNasc() {
+		return dataNasc;
+	}
 
-   public Genero getGenero()
-   {
-      return genero;
-   }
+	public void setDataNasc(Date dataNasc) {
+		this.dataNasc = dataNasc;
+	}
 
-   public void setGenero(Genero genero)
-   {
-      this.genero = genero;
-   }
-   
-   enum Genero
-   {
+	public Genero getGenero() {
+		return genero;
+	}
 
-      M("Masculino"), F("Feminino");
+	public void setGenero(Genero genero) {
+		this.genero = genero;
+	}
 
-      public String descricao;
+	public List<Venda> getVendas() {
+		return vendas;
+	}
 
-      Genero(String descricao)
-      {
-         this.descricao = descricao;
-      }
-   }
+	public void setVendas(List<Venda> vendas) {
+		this.vendas = vendas;
+	}
 
-   @Override
-   public String toString()
-   {
-      String result = getClass().getSimpleName() + " ";
-      if (Nome != null && !Nome.trim().isEmpty())
-         result += "Nome: " + Nome;
-      if (cep != null && !cep.trim().isEmpty())
-         result += ", cep: " + cep;
-      if (cpf != null && !cpf.trim().isEmpty())
-         result += ", cpf: " + cpf;
-      return result;
-   }
+	enum Genero {
+
+		M("Masculino"), F("Feminino");
+
+		public String descricao;
+
+		Genero(String descricao) {
+			this.descricao = descricao;
+		}
+	}
+
+	@Override
+	public String toString() {
+		String result = getClass().getSimpleName() + " ";
+		if (Nome != null && !Nome.trim().isEmpty())
+			result += "Nome: " + Nome;
+		if (cep != null && !cep.trim().isEmpty())
+			result += ", cep: " + cep;
+		if (cpf != null && !cpf.trim().isEmpty())
+			result += ", cpf: " + cpf;
+		return result;
+	}
 }
