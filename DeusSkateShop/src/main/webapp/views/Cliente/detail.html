@@ -34,6 +34,29 @@
         </div>
     </div>
 
+    <div class="form-group" ng-class="{'has-error': ClienteForm.cpf.$invalid}">
+        <label for="cpf" class="col-sm-2 control-label">Cpf</label>
+        <div id="cpfControls" class="col-sm-10">
+            <input id="cpf" name="cpf" type="text" required ng-maxlength="16" class="form-control" ng-model="cliente.cpf" placeholder="Enter the Cliente Cpf"></input>
+            <span class="help-block error" ng-show="ClienteForm.cpf.$error.required">required</span> 
+            <span class="help-block error" ng-show="ClienteForm.cpf.$error.maxlength">maximum length is 16</span>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ClienteForm.dataNasc.$invalid}">
+        <label for="dataNasc" class="col-sm-2 control-label">Data Nasc</label>
+        <div id="dataNascControls" class="col-sm-10">
+            <input id="dataNasc" name="dataNasc" type="text" class="form-control" ng-model="cliente.dataNasc" placeholder="Enter the Cliente Data Nasc"></input>
+        </div>
+    </div>
+
+    <div class="form-group" ng-class="{'has-error': ClienteForm.genero.$invalid}">
+        <label for="genero" class="col-sm-2 control-label">Genero</label>
+        <div id="generoControls" class="col-sm-10">
+            <input id="genero" name="genero" type="text" class="form-control" ng-model="cliente.genero" placeholder="Enter the Cliente Genero"></input>
+        </div>
+    </div>
+
 
     <div class="form-group">
         <div class="col-sm-offset-2 col-sm-10">

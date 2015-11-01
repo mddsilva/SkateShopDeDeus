@@ -1,22 +1,17 @@
 package br.univel.model;
 
-import javax.persistence.Entity;
-
 import java.io.Serializable;
+import java.sql.Date;
 
 import javax.persistence.CascadeType;
+import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.FetchType;
-import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
-import javax.persistence.Column;
+import javax.persistence.Id;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
-
-import java.lang.Override;
-import br.univel.model.Usuario;
-import java.sql.Date;
-import br.univel.model.Cliente.Genero;
 
 @Entity
 public class Cliente implements Serializable

@@ -35,6 +35,27 @@
         </div>
     </div>
 
+    <div class="form-group">
+        <label for="cpf" class="col-sm-2 control-label">Cpf</label>
+        <div class="col-sm-10">
+            <input id="cpf" name="cpf" class="form-control" type="text" ng-model="search.cpf" placeholder="Enter the Cliente Cpf"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="dataNasc" class="col-sm-2 control-label">Data Nasc</label>
+        <div class="col-sm-10">
+            <input id="dataNasc" name="dataNasc" class="form-control" type="text" ng-model="search.dataNasc" placeholder="Enter the Cliente Data Nasc"></input>
+        </div>
+    </div>
+
+    <div class="form-group">
+        <label for="genero" class="col-sm-2 control-label">Genero</label>
+        <div class="col-sm-10">
+            <input id="genero" name="genero" class="form-control" type="text" ng-model="search.genero" placeholder="Enter the Cliente Genero"></input>
+        </div>
+    </div>
+
 
         <div class="form-group">
             <div class="col-md-offset-2 col-sm-10">
@@ -51,6 +72,9 @@
                     <th>Nome</th>
                     <th>Cep</th>
                     <th>Usuario</th>
+                    <th>Cpf</th>
+                    <th>Data Nasc</th>
+                    <th>Genero</th>
                 </tr>
             </thead>
             <tbody id="search-results-body">
@@ -58,6 +82,9 @@
                     <td><a href="#/Clientes/edit/{{result.id}}">{{result.Nome}}</a></td>
                     <td><a href="#/Clientes/edit/{{result.id}}">{{result.cep}}</a></td>
                         <td><a href="#/Clientes/edit/{{result.id}}">{{result.usuario.id}}</a></td>
+                    <td><a href="#/Clientes/edit/{{result.id}}">{{result.cpf}}</a></td>
+                    <td><a href="#/Clientes/edit/{{result.id}}">{{result.dataNasc}}</a></td>
+                    <td><a href="#/Clientes/edit/{{result.id}}">{{result.genero}}</a></td>
                 </tr>
             </tbody>
         </table>
