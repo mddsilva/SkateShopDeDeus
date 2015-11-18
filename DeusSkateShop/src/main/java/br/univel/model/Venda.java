@@ -23,8 +23,10 @@ import java.sql.Date;
 import java.util.List;
 
 import br.univel.model.FormaPagamento;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Venda implements Serializable
 {
 
@@ -54,9 +56,9 @@ public class Venda implements Serializable
 
    @Column
    private Double valorPago;
-   
+
    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   private List<Produto> produtos;
+   private List<ItemVenda> itensVenda;
 
    public Long getId()
    {
@@ -159,17 +161,17 @@ public class Venda implements Serializable
       this.valorPago = valorPago;
    }
 
-   
-   
-   public List<Produto> getProdutos() {
-	return produtos;
-}
+   public List<ItemVenda> getItensProduto()
+   {
+      return itensVenda;
+   }
 
-public void setProdutos(List<Produto> produtos) {
-	this.produtos = produtos;
-}
+   public void setItensProduto(List<ItemVenda> itensVenda)
+   {
+      this.itensVenda = itensVenda;
+   }
 
-@Override
+   @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";

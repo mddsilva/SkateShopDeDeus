@@ -2,7 +2,6 @@ package br.univel.model;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
-import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,19 +10,20 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Produto implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = 5720122895964402524L;
-@Id
+    * 
+    */
+   private static final long serialVersionUID = 5720122895964402524L;
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
@@ -46,9 +46,8 @@ public class Produto implements Serializable
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
    private Fabricante fabricante;
 
-   @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   private List<Venda> vendas;
-   
+ 
+
    @Column(nullable = false)
    private Integer quantidade;
 
@@ -163,17 +162,8 @@ public class Produto implements Serializable
       this.quantidade = quantidade;
    }
 
-   
-   
-   public List<Venda> getVendas() {
-	return vendas;
-}
 
-public void setVendas(List<Venda> vendas) {
-	this.vendas = vendas;
-}
-
-@Override
+   @Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";

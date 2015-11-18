@@ -49,12 +49,10 @@
         </div>
     </div>
 
-    <div class="form-group" ng-class="{'has-error': VendaForm.produtos.$invalid}">
-        <label for="produtos" class="col-sm-2 control-label">Produtos</label>
-        <div id="produtosControls" class="col-sm-10">
-            <select id="produtos" name="produtos" multiple class="form-control" ng-model="produtosSelection" ng-options="p.text for p in produtosSelectionList">
-                <option value="">Choose a Produtos</option>
-            </select>
+    <div class="form-group" ng-class="{'has-error': VendaForm.itensProduto.$invalid}">
+        <label for="itensProduto" class="col-sm-2 control-label">Itens Produto</label>
+        <div id="itensProdutoControls" class="col-sm-10">
+            <input id="itensProduto" name="itensProduto" type="text" class="form-control" ng-model="venda.itensProduto" placeholder="Enter the Venda Itens Produto"></input>
         </div>
     </div>
 

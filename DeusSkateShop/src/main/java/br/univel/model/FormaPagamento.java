@@ -11,9 +11,11 @@ import javax.persistence.Column;
 import javax.persistence.Version;
 
 import java.lang.Override;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @SuppressWarnings("serial")
 @Entity
+@XmlRootElement
 public class FormaPagamento implements Serializable
 {
 

@@ -8,15 +8,17 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Categoria implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -5839986112021519173L;
+    * 
+    */
+   private static final long serialVersionUID = -5839986112021519173L;
    @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)

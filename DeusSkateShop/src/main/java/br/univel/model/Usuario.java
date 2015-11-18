@@ -8,16 +8,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Column;
 import javax.persistence.Version;
 import java.lang.Override;
+import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
+@XmlRootElement
 public class Usuario implements Serializable
 {
 
    /**
-	 * 
-	 */
-	private static final long serialVersionUID = -6486121489865567122L;
-@Id
+    * 
+    */
+   private static final long serialVersionUID = -6486121489865567122L;
+   @Id
    @GeneratedValue(strategy = GenerationType.AUTO)
    @Column(name = "id", updatable = false, nullable = false)
    private Long id;
@@ -30,7 +32,7 @@ public class Usuario implements Serializable
 
    @Column
    private String senha;
-   
+
    public Long getId()
    {
       return this.id;

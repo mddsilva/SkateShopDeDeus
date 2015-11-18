@@ -6,4 +6,5 @@ import javax.ws.rs.ApplicationPath;
 @ApplicationPath("/rest")
 public class RestApplication extends Application
 {
+	
 }

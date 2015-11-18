@@ -1,6 +1,6 @@
 
 
-angular.module('deusSkateShop').controller('EditVendaController', function($scope, $routeParams, $location, VendaResource , ClienteResource, FormaPagamentoResource, ProdutoResource) {
+angular.module('deusSkateShop').controller('EditVendaController', function($scope, $routeParams, $location, VendaResource , ClienteResource, FormaPagamentoResource) {
     var self = this;
     $scope.disabled = false;
     $scope.$location = $location;
@@ -39,27 +39,6 @@ angular.module('deusSkateShop').controller('EditVendaController', function($scop
                         $scope.formaPagamentoSelection = labelObject;
                         $scope.venda.formaPagamento = wrappedObject;
                         self.original.formaPagamento = $scope.venda.formaPagamento;
-                    }
-                    return labelObject;
-                });
-            });
-            ProdutoResource.queryAll(function(items) {
-                $scope.produtosSelectionList = $.map(items, function(item) {
-                    var wrappedObject = {
-                        id : item.id
-                    };
-                    var labelObject = {
-                        value : item.id,
-                        text : item.id
-                    };
-                    if($scope.venda.produtos){
-                        $.each($scope.venda.produtos, function(idx, element) {
-                            if(item.id == element.id) {
-                                $scope.produtosSelection.push(labelObject);
-                                $scope.venda.produtos.push(wrappedObject);
-                            }
-                        });
-                        self.original.produtos = $scope.venda.produtos;
                     }
                     return labelObject;
                 });
@@ -111,17 +90,6 @@ angular.module('deusSkateShop').controller('EditVendaController', function($scop
         if (typeof selection != 'undefined') {
             $scope.venda.formaPagamento = {};
             $scope.venda.formaPagamento.id = selection.value;
-        }
-    });
-    $scope.produtosSelection = $scope.produtosSelection || [];
-    $scope.$watch("produtosSelection", function(selection) {
-        if (typeof selection != 'undefined' && $scope.venda) {
-            $scope.venda.produtos = [];
-            $.each(selection, function(idx,selectedItem) {
-                var collectionItem = {};
-                collectionItem.id = selectedItem.value;
-                $scope.venda.produtos.push(collectionItem);
-            });
         }
     });
     
