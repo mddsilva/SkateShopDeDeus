@@ -1,13 +1,21 @@
 package br.univel.model;
 
 import javax.persistence.Entity;
+
 import java.io.Serializable;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Id;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Column;
+import javax.persistence.OneToMany;
 import javax.persistence.Version;
+
 import java.lang.Override;
+import java.util.HashSet;
+import java.util.Set;
+
 import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
@@ -35,20 +43,20 @@ public class Categoria implements Serializable
       return this.id;
    }
 
-   public void setId(final Long id)
-   {
-      this.id = id;
-   }
+	@OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Produto> produtos = new HashSet<Produto>();
 
-   public int getVersion()
-   {
-      return this.version;
-   }
+	public void setId(final Long id) {
+		this.id = id;
+	}
 
-   public void setVersion(final int version)
-   {
-      this.version = version;
-   }
+	public int getVersion() {
+		return this.version;
+	}
+
+	public void setVersion(final int version) {
+		this.version = version;
+	}
 
    @Override
    public boolean equals(Object obj)
@@ -91,7 +99,15 @@ public class Categoria implements Serializable
       this.descricao = descricao;
    }
 
-   @Override
+   public Set<Produto> getProdutos() {
+	return produtos;
+}
+
+public void setProdutos(Set<Produto> produtos) {
+	this.produtos = produtos;
+}
+
+@Override
    public String toString()
    {
       String result = getClass().getSimpleName() + " ";

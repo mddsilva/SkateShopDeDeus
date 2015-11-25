@@ -10,6 +10,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -38,9 +39,9 @@ public class Produto implements Serializable
    private String descricao;
 
    @Column
-   private BigDecimal preco;
+   private Float  preco;
 
-   @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+   @ManyToOne
    private Categoria categoria;
 
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.LAZY)
@@ -122,12 +123,12 @@ public class Produto implements Serializable
       this.descricao = descricao;
    }
 
-   public BigDecimal getPreco()
+   public Float  getPreco()
    {
       return preco;
    }
 
-   public void setPreco(BigDecimal preco)
+   public void setPreco(Float  preco)
    {
       this.preco = preco;
    }
