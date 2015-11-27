@@ -20,7 +20,9 @@ import javax.ws.rs.QueryParam;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.Response.Status;
 import javax.ws.rs.core.UriBuilder;
+
 import br.univel.model.Cliente;
+import br.univel.model.Usuario;
 
 /**
  * 
@@ -36,6 +38,10 @@ public class ClienteEndpoint
    @Consumes("application/json")
    public Response create(Cliente entity)
    {
+	   
+	   entity.setUsuario(em.find(Usuario.class, entity.getUsuario()
+				.getId()));
+	   
       em.persist(entity);
       return Response.created(UriBuilder.fromResource(ClienteEndpoint.class).path(String.valueOf(entity.getId())).build()).build();
    }

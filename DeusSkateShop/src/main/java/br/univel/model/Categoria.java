@@ -20,7 +20,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Categoria implements Serializable
+public class Categoria implements Serializable,Entidade
 {
 
    /**

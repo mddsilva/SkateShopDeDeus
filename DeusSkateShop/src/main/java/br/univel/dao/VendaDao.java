@@ -43,7 +43,7 @@ public class VendaDao
 
    public List<Venda> listAll(Integer startPosition, Integer maxResult)
    {
-      TypedQuery<Venda> findAllQuery = em.createQuery("SELECT DISTINCT v FROM Venda v LEFT JOIN FETCH v.itens ORDER BY v.id", Venda.class);
+      TypedQuery<Venda> findAllQuery = em.createQuery("SELECT DISTINCT v FROM Venda v LEFT JOIN FETCH v.itens LEFT JOIN FETCH v.cliente ORDER BY v.id", Venda.class);
       if (startPosition != null)
       {
          findAllQuery.setFirstResult(startPosition);

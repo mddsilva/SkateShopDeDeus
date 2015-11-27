@@ -2,7 +2,8 @@ package br.univel.model;
 
 import java.io.Serializable;
 import java.sql.Date;
-import java.util.List;
+import java.util.HashSet;
+import java.util.Set;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -11,7 +12,6 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Version;
@@ -19,7 +19,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Cliente implements Serializable
+public class Cliente implements Serializable,Entidade
 {
 
    /**
@@ -43,9 +43,8 @@ public class Cliente implements Serializable
    @OneToOne(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
    private Usuario usuario;
 
-   @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-   @JoinColumn(name = "cliente_id")
-   private List<Venda> vendas;
+	@OneToMany(mappedBy = "cliente", cascade = CascadeType.ALL, orphanRemoval = true)
+	private Set<Venda> vendas = new HashSet<Venda>();
 
    @Column(length = 16, nullable = false)
    private String cpf;
@@ -167,12 +166,12 @@ public class Cliente implements Serializable
       this.genero = genero;
    }
 
-   public List<Venda> getVendas()
+   public Set<Venda> getVendas()
    {
       return vendas;
    }
 
-   public void setVendas(List<Venda> vendas)
+   public void setVendas(Set<Venda> vendas)
    {
       this.vendas = vendas;
    }

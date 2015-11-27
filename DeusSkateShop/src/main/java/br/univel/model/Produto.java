@@ -1,7 +1,6 @@
 package br.univel.model;
 
 import java.io.Serializable;
-import java.math.BigDecimal;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,7 +16,7 @@ import javax.xml.bind.annotation.XmlRootElement;
 
 @Entity
 @XmlRootElement
-public class Produto implements Serializable
+public class Produto implements Serializable,Entidade
 {
 
    /**
