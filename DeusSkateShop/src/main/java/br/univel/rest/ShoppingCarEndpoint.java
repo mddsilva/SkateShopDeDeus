@@ -2,7 +2,6 @@ package br.univel.rest;
 
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
@@ -15,7 +14,6 @@ import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
-import javax.ws.rs.Produces;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
@@ -76,7 +74,7 @@ public class ShoppingCarEndpoint implements Serializable{
 	@Path("/total")
 	public Response getTotal() {
 		
-		return Response.ok(String.valueOf(shoppingCar.getTotal())).build();
+		return Response.ok(String.valueOf(shoppingCar.getSubtotal())).build();
 	}
 	
 	
